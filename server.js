@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// GET ROUTES
+//API GET ROUTES
 app.get("/api/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf-8", (err,data) =>  {
         if(err){
@@ -29,7 +29,7 @@ app.get("/api/notes", (req, res) => {
     })
 })
 
-// POST ROUTES - NOTES
+// API POST ROUTES - NOTES
 app.post("/api/notes", (req, res) =>    {
     console.log(req.body);
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
@@ -56,10 +56,36 @@ app.post("/api/notes", (req, res) =>    {
     })
 });
 
+// GET ROUTE HTML
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"))
+});
+
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "/public/notes.html"))
+});
+
+// POST ROUTE HTML
+app.post("/notes", function(req, res)   {
+    const notes = fs.readFile("./db/db.json", "utf-8", (err, data) =>{
+        if(err) {
+            console.log(err)
+        }
+    if(data) {
+        res.body(data)
+        console.log("there should be new data here" + data);
+    }
+    })
+
+})
+
+
+
+
 app.listen(PORT, function() {
     console.log("App listening on PORT:" + PORT);
 })
 
-// GET ROUTES
+
 
 
