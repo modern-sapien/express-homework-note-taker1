@@ -15,6 +15,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // POST ROUTES
 app.post("/api/notes", (req, res) =>    {
     console.log(req.body);
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        if(err) throw err;
+        console.log(data);
+    })
 })
 
 app.listen(PORT, function() {
