@@ -18,6 +18,12 @@ app.post("/api/notes", (req, res) =>    {
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if(err) throw err;
         console.log(data);
+        const updatedData = JSON.parse(data);
+        updatedData.push(req.body);
+        console.log(updatedData);
+        fs.writeFile("./db/db.json", JSON.stringify(updatedData), (err)   =>  {
+            if (err) throw err;
+        })
     })
 })
 
