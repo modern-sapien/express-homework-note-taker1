@@ -1,8 +1,9 @@
 # EXPRESS-HOMEWORK-NOTE-TAKER
 
+[GitHub Link](https://express-note-taker-move.herokuapp.com/notes)
 [Deployed Application](https://express-note-taker-move.herokuapp.com/notes)
 
-![This is a screenshot of the express team page](resources/express-screen-shot.png)
+![This is a screenshot of the express team page](express-screen-shot.png)
 
 
 * [INTRODUCTION](#INTRODUCTION)
