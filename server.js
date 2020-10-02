@@ -18,9 +18,9 @@ app.get("/api/notes", function(req, res){
 // API POST ROUTES - NOTES
 app.post("/api/notes", (req, res) =>    {
     console.log(req.body);
-    // if something in db/db.json this
+    const newArray = [];
     fs.readFile("db/db.json", "utf-8", (err, data) => {
-    if(err) {
+        if(err) {
         console.log(err);
         return res.json({
             error: true,
