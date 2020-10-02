@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
-const fakeDataBase = "./db/db.json"
+const fakeDataBase = "/db/db.json"
 const app = express();
 
 // middleware
@@ -18,7 +18,6 @@ app.get("/api/notes", function(req, res){
 // API POST ROUTES - NOTES
 app.post("/api/notes", (req, res) =>    {
     console.log(req.body);
-    const newArray = [];
     fs.readFile("db/db.json", "utf-8", (err, data) => {
         if(err) {
         console.log(err);
@@ -47,7 +46,41 @@ app.post("/api/notes", (req, res) =>    {
             message: "successfully added new note.",
         });
      })
-    })
+  })
+})
+
+// DELETE 
+app.delete("/api/notes/:id", (req, res) =>  {
+    console.log(req.body)
+    fs.readFile("db/db.json", "utf-8", (err, data) =>{
+        if(err) {
+            console.log(err);
+            return res.json({
+                error: true,
+                data: null,
+                message: "unable to get note."
+            });
+        }
+    const updatedData = JSON.parse(data).filter(function (data) {
+        return data.id != req.params.id;
+    });
+    // updatedData.push(req.body);
+    // console.log(updatedData);
+    fs.writeFile("db/db.json", JSON.stringify(updatedData), (err) =>    {
+        if (err)    {
+            console.log(err);
+            return res.json({
+                error: true,
+                data: null,
+                message: "unable to save note"
+            })
+        }
+        res.json({  error: false,
+                    data: updatedData,
+                    message: "successfully rewrote saved notes without the targetted delete."
+            })
+        })
+    });
 })
 
 // GET ROUTE HTML
