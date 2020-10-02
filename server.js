@@ -5,7 +5,7 @@ const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-// middleware
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join("./public")));
@@ -28,8 +28,8 @@ app.post("/api/notes", (req, res) =>    {
         });
     }
     const updatedData = JSON.parse(data);
+    req.body.id = updatedData.length;
     req.body.id = uuidv4();
-    // switch out updatedData with uuidv4() 
     updatedData.push(req.body);
     console.log(updatedData);
     fs.writeFile("db/db.json", JSON.stringify(updatedData), (err) =>  {
@@ -48,7 +48,7 @@ app.post("/api/notes", (req, res) =>    {
         });
      })
   })
-})
+});
 
 // DELETE 
 app.delete("/api/notes/:id", (req, res) =>  {
