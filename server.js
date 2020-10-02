@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
+
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
-const fakeDataBase = "/db/db.json"
 const app = express();
 
 // middleware
@@ -29,6 +29,7 @@ app.post("/api/notes", (req, res) =>    {
     }
     const updatedData = JSON.parse(data);
     req.body.id = updatedData.length;
+    // switch out updatedData with uuidv4() 
     updatedData.push(req.body);
     console.log(updatedData);
     fs.writeFile("db/db.json", JSON.stringify(updatedData), (err) =>  {
