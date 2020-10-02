@@ -1,9 +1,1 @@
-[
-  {
-    "title": "Test Title",
-    "text": "Test text"
-  },
-  {
-    "title": "new test",
-    "notes": "so cool dude"
-  }]
+[{"title":"Test Title","text":"Test text"},{"title":"asdfasd","text":"asdfasdf","id":1}]
