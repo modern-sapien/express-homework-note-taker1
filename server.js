@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-
+const {v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -28,7 +28,7 @@ app.post("/api/notes", (req, res) =>    {
         });
     }
     const updatedData = JSON.parse(data);
-    req.body.id = updatedData.length;
+    req.body.id = uuidv4();
     // switch out updatedData with uuidv4() 
     updatedData.push(req.body);
     console.log(updatedData);
