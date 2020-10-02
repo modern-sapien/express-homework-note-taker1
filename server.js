@@ -65,8 +65,6 @@ app.delete("/api/notes/:id", (req, res) =>  {
     const updatedData = JSON.parse(data).filter(function (data) {
         return data.id != req.params.id;
     });
-    // updatedData.push(req.body);
-    // console.log(updatedData);
     fs.writeFile("db/db.json", JSON.stringify(updatedData), (err) =>    {
         if (err)    {
             console.log(err);
