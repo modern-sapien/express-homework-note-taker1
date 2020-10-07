@@ -5,7 +5,6 @@
 
 ![This is a screenshot of the express team page](express-screen-shot.png)
 
-
 * [INTRODUCTION](#INTRODUCTION)
 * [DEVELOPMENT](#DEVELOPMENT)
 * [EXPRESS](#EXPRESS)
